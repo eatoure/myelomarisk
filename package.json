@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "sync:site": "node scripts/sync-site.mjs",
+    "build:site": "npm run build && npm run sync:site",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview"
