@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn, withBase } from "@/lib/utils";
 
 type HeroBackdropVariant = "hero" | "primary";
 
@@ -25,7 +25,7 @@ const HeroBackdrop = ({ variant = "hero", className }: HeroBackdropProps) => {
         aria-hidden="true"
         tabIndex={-1}
       >
-        <source src="/videos/combined_video.mp4" type="video/mp4" />
+        <source src={withBase("/videos/combined_video.mp4")} type="video/mp4" />
       </video>
       <div className={cn("absolute inset-0", overlays[variant])} />
       <div className="absolute inset-0 bg-black/15" />

@@ -1,3 +1,5 @@
+import { withBase } from "@/lib/utils";
+
 export interface DeveloperProfile {
   name: string;
   title: string;
@@ -16,7 +18,7 @@ export const developers: DeveloperProfile[] = [
     skills: ["Clinical Research", "Epidemiology", "Hematology", "Myeloma and Amyloidosis"],
     email: "vincerk@gmail.com",
     twitter: "@MayoMyeloma",
-    image: "/images/team/VincentRajkumar.jpg",
+    image: withBase("/images/team/VincentRajkumar.jpg"),
   },
   {
     name: "Dr. Shaji Kumar",
@@ -25,7 +27,7 @@ export const developers: DeveloperProfile[] = [
     skills: ["Novel Therapeutics", "Clinical Trials", "Translational Research", "Plasma Cell Disorders"],
     email: "kumarshaji@hotmail.com",
     twitter: "@myelomaMD",
-    image: "/images/team/ShajiKumar.jpg",
+    image: withBase("/images/team/ShajiKumar.jpg"),
   },
   {
     name: "Elhadji Amadou Touré",
@@ -34,7 +36,7 @@ export const developers: DeveloperProfile[] = [
     skills: ["Healthcare Analytics", "Machine Learning", "Full-Stack Development", "Clinical Research"],
     email: "tourea@carleton.edu",
     twitter: "@eamadoutoure",
-    image: "/images/team/AmadouToure.JPG",
+    image: withBase("/images/team/AmadouToure.JPG"),
   },
 ];
 
