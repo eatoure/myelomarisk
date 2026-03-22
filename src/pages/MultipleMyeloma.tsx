@@ -17,6 +17,7 @@ const MultipleMyeloma = () => {
     normalRenalFunction: "",
     onePDeletion: "",
     onePDeletionType: "",
+    b2MicroglobulinStatus: "",
     b2Microglobulin: "",
   });
   const [showResult, setShowResult] = useState(false);
@@ -30,6 +31,7 @@ const MultipleMyeloma = () => {
       normalRenalFunction,
       onePDeletion,
       onePDeletionType,
+      b2MicroglobulinStatus,
       b2Microglobulin,
     } = formData;
     
@@ -39,7 +41,8 @@ const MultipleMyeloma = () => {
       !chr17Abnormality ||
       !normalRenalFunction ||
       !onePDeletion ||
-      !b2Microglobulin ||
+      !b2MicroglobulinStatus ||
+      (b2MicroglobulinStatus === "known" && !b2Microglobulin) ||
       (onePDeletion === "yes" && !onePDeletionType)
     ) {
       toast({
@@ -50,9 +53,13 @@ const MultipleMyeloma = () => {
       return;
     }
 
-    const b2Value = parseFloat(b2Microglobulin);
+    let b2Value: number | null = null;
 
-    if (Number.isNaN(b2Value)) {
+    if (b2MicroglobulinStatus === "known") {
+      b2Value = parseFloat(b2Microglobulin);
+    }
+
+    if (b2MicroglobulinStatus === "known" && (b2Value === null || Number.isNaN(b2Value))) {
       toast({
         title: "Invalid Input",
         description: "Please enter a valid serum β-2 microglobulin value.",
@@ -73,7 +80,9 @@ const MultipleMyeloma = () => {
       onePDeletion === "yes" &&
       onePDeletionType === "biallelic";
 
-    const renalBetaHighRisk = b2Value >= 5.5 && normalRenalFunction === "yes";
+    // Normal renal function only changes risk classification when serum beta-2 is known and elevated.
+    const hasKnownHighBeta2 = b2Value !== null && b2Value >= 5.5;
+    const renalBetaHighRisk = hasKnownHighBeta2 && normalRenalFunction === "yes";
 
     const isHighRisk = renalBetaHighRisk || (cytogeneticRiskCount >= 2 && !standardRiskException);
 
@@ -97,6 +106,10 @@ const MultipleMyeloma = () => {
         {
           text: "Usmani SZ, Facon T, Hungria V, et al. Daratumumab plus bortezomib, lenalidomide and dexamethasone for transplant-ineligible or transplant-deferred newly diagnosed multiple myeloma: the randomized phase 3 CEPHEUS trial. Nat Med. 2025;31:1195-1202.",
           url: "https://doi.org/10.1038/s41591-024-03485-7",
+        },
+        {
+          text: "Maura F, Bergsagel PL, Ziccheddu B, et al. Genomics Define Malignant Transformation in Myeloma Precursor Conditions. J Clin Oncol. 2025 Oct 8:JCO2501733.",
+          url: "https://doi.org/10.1200/JCO-25-01733",
         },
       ]}
       authors={authors}
@@ -165,27 +178,6 @@ const MultipleMyeloma = () => {
           </RadioGroup>
         </div>
 
-        {/* Normal Renal Function */}
-        <div>
-          <Label className="label-field">
-            Normal Renal Function?
-          </Label>
-          <RadioGroup
-            value={formData.normalRenalFunction}
-            onValueChange={(value) => setFormData({ ...formData, normalRenalFunction: value })}
-            className="flex gap-6 mt-2"
-          >
-            <div className="flex items-center gap-2">
-              <RadioGroupItem value="yes" id="renal-yes" />
-              <Label htmlFor="renal-yes" className="cursor-pointer">Yes</Label>
-            </div>
-            <div className="flex items-center gap-2">
-              <RadioGroupItem value="no" id="renal-no" />
-              <Label htmlFor="renal-no" className="cursor-pointer">No</Label>
-            </div>
-          </RadioGroup>
-        </div>
-
         {/* 1p Deletion */}
         <div>
           <Label className="label-field">
@@ -239,20 +231,67 @@ const MultipleMyeloma = () => {
           )}
         </div>
 
+        {/* Normal Renal Function */}
+        <div>
+          <Label className="label-field">
+            Normal Renal Function?
+          </Label>
+          <RadioGroup
+            value={formData.normalRenalFunction}
+            onValueChange={(value) => setFormData({ ...formData, normalRenalFunction: value })}
+            className="flex gap-6 mt-2"
+          >
+            <div className="flex items-center gap-2">
+              <RadioGroupItem value="yes" id="renal-yes" />
+              <Label htmlFor="renal-yes" className="cursor-pointer">Yes</Label>
+            </div>
+            <div className="flex items-center gap-2">
+              <RadioGroupItem value="no" id="renal-no" />
+              <Label htmlFor="renal-no" className="cursor-pointer">No</Label>
+            </div>
+          </RadioGroup>
+          <p className="mt-2 text-sm text-muted-foreground">
+            This answer only affects risk classification when serum β-2 microglobulin is known and at least 5.5 mg/L.
+          </p>
+        </div>
+
         {/* β-2 Microglobulin */}
         <div>
-          <Label htmlFor="b2Microglobulin" className="label-field">
-            Serum β-2 Microglobulin (mg/L)
+          <Label className="label-field">
+            Serum β-2 Microglobulin
           </Label>
-          <Input
-            id="b2Microglobulin"
-            type="number"
-            step="0.1"
-            placeholder="e.g., 5.5"
-            className="input-field"
-            value={formData.b2Microglobulin}
-            onChange={(e) => setFormData({ ...formData, b2Microglobulin: e.target.value })}
-          />
+          <RadioGroup
+            value={formData.b2MicroglobulinStatus}
+            onValueChange={(value) =>
+              setFormData({
+                ...formData,
+                b2MicroglobulinStatus: value,
+                b2Microglobulin: value === "known" ? formData.b2Microglobulin : "",
+              })
+            }
+            className="flex gap-6 mt-2"
+          >
+            <div className="flex items-center gap-2">
+              <RadioGroupItem value="known" id="b2-known" />
+              <Label htmlFor="b2-known" className="cursor-pointer">Known</Label>
+            </div>
+            <div className="flex items-center gap-2">
+              <RadioGroupItem value="unknown" id="b2-unknown" />
+              <Label htmlFor="b2-unknown" className="cursor-pointer">Unknown</Label>
+            </div>
+          </RadioGroup>
+
+          {formData.b2MicroglobulinStatus === "known" && (
+            <Input
+              id="b2Microglobulin"
+              type="number"
+              step="0.1"
+              placeholder="e.g., 5.5"
+              className="input-field mt-4"
+              value={formData.b2Microglobulin}
+              onChange={(e) => setFormData({ ...formData, b2Microglobulin: e.target.value })}
+            />
+          )}
         </div>
 
         <Button onClick={calculateRisk} className="w-full btn-primary py-6 text-base">

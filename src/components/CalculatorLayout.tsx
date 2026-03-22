@@ -21,12 +21,18 @@ interface Reference {
   url: string;
 }
 
+interface DetailSection {
+  title: string;
+  content: ReactNode;
+}
+
 interface CalculatorLayoutProps {
   title: string;
   description: string;
   children: ReactNode;
   reference: Reference | Reference[];
   authors: Author[];
+  detailSections?: DetailSection[];
 }
 
 const CalculatorLayout = ({
@@ -35,6 +41,7 @@ const CalculatorLayout = ({
   children,
   reference,
   authors,
+  detailSections = [],
 }: CalculatorLayoutProps) => {
   const references = Array.isArray(reference) ? reference : [reference];
 
@@ -73,21 +80,38 @@ const CalculatorLayout = ({
 
             {/* Reference */}
             <div className="mt-6 p-4 rounded-xl bg-muted/50 animate-fade-in-up" style={{ animationDelay: "100ms" }}>
-              <h3 className="font-semibold text-sm text-foreground mb-2">
-                {references.length === 1 ? "Reference" : "References"}
-              </h3>
-              <div className="space-y-2">
-                {references.map((item) => (
-                  <a
-                    key={item.url}
-                    href={item.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-primary hover:underline flex items-start gap-1"
-                  >
-                    <span>{item.text}</span>
-                    <ExternalLink className="h-3 w-3 shrink-0 mt-0.5" />
-                  </a>
+              <div className="space-y-4">
+                <div>
+                  <h3 className="font-semibold text-sm text-foreground mb-2">
+                    {references.length === 1 ? "Reference" : "References"}
+                  </h3>
+                  <div className="space-y-2">
+                    {references.map((item) => (
+                      <a
+                        key={item.url}
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-primary hover:underline flex items-start gap-1"
+                      >
+                        <span>{item.text}</span>
+                        <ExternalLink className="h-3 w-3 shrink-0 mt-0.5" />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+
+                {detailSections.map((section) => (
+                  <Accordion key={section.title} type="single" collapsible>
+                    <AccordionItem value={section.title} className="border rounded-xl bg-card px-4">
+                      <AccordionTrigger className="text-sm font-semibold hover:no-underline">
+                        {section.title}
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        {section.content}
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
                 ))}
               </div>
             </div>

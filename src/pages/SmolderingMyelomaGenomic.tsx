@@ -21,6 +21,13 @@ const SmolderingMyelomaGenomic = () => {
   const [showResult, setShowResult] = useState(false);
   const [result, setResult] = useState("");
 
+  const genomicAuthors = [
+    authors[0],
+    authors[1],
+    { name: "Francesco Maura, MD", role: "Myeloma Specialist, Memorial Sloan Kettering Cancer Center" },
+    authors[2],
+  ];
+
   const calculateRisk = () => {
     const {
       imwgRiskStatus,
@@ -117,7 +124,46 @@ This information is for patients not receiving treatment.`
           url: "https://doi.org/10.1038/s41408-020-00366-3",
         },
       ]}
-      authors={authors}
+      detailSections={[
+        {
+          title: "Details of how to analyze genomics",
+          content: (
+            <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
+              <p>
+                <span className="font-medium text-foreground">MYC:</span> any events involving MYC, including focal gains (&lt; 5Mb).
+              </p>
+              <p>
+                <span className="font-medium text-foreground">RAS:</span> nonsynonymous mutations involving KRAS, NRAS, BRAF, FGFR3, PTPN11, or NF1.
+              </p>
+              <p>
+                <span className="font-medium text-foreground">Tool to use for APOBEC:</span>{" "}
+                needs at least &gt;50 mutations.{" "}
+                <a
+                  href="https://github.com/bachisiozic/mmsig"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline"
+                >
+                  github.com/bachisiozic/mmsig
+                </a>
+              </p>
+              <p>
+                <span className="font-medium text-foreground">Tool to use for CNV Signature:</span>{" "}
+                <a
+                  href="https://github.com/bachisiozic/CNV_mmsig"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline"
+                >
+                  github.com/bachisiozic/CNV_mmsig
+                </a>
+                . This is a simple package where you simply upload the output of any CNV caller.
+              </p>
+            </div>
+          ),
+        },
+      ]}
+      authors={genomicAuthors}
     >
       <div className="space-y-6">
         <div className="rounded-xl border border-primary/15 bg-primary/5 p-4 text-sm text-muted-foreground">

@@ -2,6 +2,13 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Info } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import CalculatorLayout from "@/components/CalculatorLayout";
 import ResultModal from "@/components/ResultModal";
 import { useToast } from "@/hooks/use-toast";
@@ -14,14 +21,33 @@ const SmolderingMyeloma = () => {
     kappaLevel: "",
     lambdaLevel: "",
     boneMarrowPlasma: "",
+    cytogenetic: "",
   });
   const [showResult, setShowResult] = useState(false);
   const [result, setResult] = useState("");
 
+  const progressionRiskMap: Record<number, number> = {
+    0: 1.3,
+    2: 5.4,
+    3: 2.6,
+    4: 10.3,
+    5: 19.2,
+    6: 23.4,
+    7: 27.6,
+    8: 35.0,
+    9: 48.6,
+    10: 41.9,
+    11: 50.0,
+    12: 61.9,
+    13: 50.0,
+    14: 78.6,
+    15: 83.3,
+  };
+
   const calculateRisk = () => {
-    const { mProtein, kappaLevel, lambdaLevel, boneMarrowPlasma } = formData;
+    const { mProtein, kappaLevel, lambdaLevel, boneMarrowPlasma, cytogenetic } = formData;
     
-    if (!mProtein || !kappaLevel || !lambdaLevel || !boneMarrowPlasma) {
+    if (!mProtein || !kappaLevel || !lambdaLevel || !boneMarrowPlasma || !cytogenetic) {
       toast({
         title: "Missing Information",
         description: "Please fill in all required fields.",
@@ -61,24 +87,41 @@ const SmolderingMyeloma = () => {
       boneMarrow > 20,
     ].filter(Boolean).length;
 
+    // Keep the current threshold-based IMWG risk classification.
     let riskLevel: string;
-    let progressionRisk: string;
 
     if (thresholdCount >= 2) {
       riskLevel = "high-risk";
-      progressionRisk = "61.9%";
     } else if (thresholdCount === 1) {
       riskLevel = "intermediate-risk";
-      progressionRisk = "45.5%";
     } else {
       riskLevel = "low-risk";
-      progressionRisk = "6%";
     }
+
+    // Restore the older point-based progression score for the 2-year risk percentage.
+    let flcScore = 0;
+    if (ratio > 40) flcScore = 5;
+    else if (ratio > 25) flcScore = 3;
+    else if (ratio > 10) flcScore = 2;
+
+    let mProteinScore = 0;
+    if (mProteinVal > 3) mProteinScore = 4;
+    else if (mProteinVal >= 1.5) mProteinScore = 3;
+
+    let boneMarrowScore = 0;
+    if (boneMarrow > 40) boneMarrowScore = 6;
+    else if (boneMarrow > 30) boneMarrowScore = 5;
+    else if (boneMarrow > 20) boneMarrowScore = 3;
+    else if (boneMarrow > 15) boneMarrowScore = 2;
+
+    const cytogeneticScore = cytogenetic === "yes" ? 2 : 0;
+    const progressionScore = flcScore + mProteinScore + boneMarrowScore + cytogeneticScore;
+    const progressionRisk = progressionScore > 15 ? 88.9 : (progressionRiskMap[progressionScore] ?? 88.9);
 
     setResult(
       `Based on the information provided this patient has **${riskLevel.replace("-", " ").replace(/\b\w/g, (char) => char.toUpperCase())}** Smoldering Multiple Myeloma based on the IMWG 2020 risk stratification.
 
-Using the IMWG scoring system, the 2-year progression risk from initial diagnosis is ${progressionRisk}.
+Using the IMWG scoring system, the 2-year progression risk from initial diagnosis is ${progressionRisk}%.
 
 This information is for patients not receiving treatment. Results based on IMWG 2020 risk stratification model.`
     );
@@ -161,6 +204,41 @@ This information is for patients not receiving treatment. Results based on IMWG 
             value={formData.boneMarrowPlasma}
             onChange={(e) => setFormData({ ...formData, boneMarrowPlasma: e.target.value })}
           />
+        </div>
+
+        {/* This field feeds only the restored progression score, matching the older calculator behavior. */}
+        <div>
+          <div className="mb-3 flex items-center gap-2">
+            <Label className="label-field mb-0">
+              High-Risk Cytogenetic Abnormalities
+            </Label>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Info className="h-4 w-4 cursor-help text-muted-foreground" />
+              </TooltipTrigger>
+              <TooltipContent className="max-w-xs bg-popover text-popover-foreground">
+                <p>Refers to presence of t(4;14), t(14;16), +1q, and del13q/monosomy 13 by FISH.</p>
+              </TooltipContent>
+            </Tooltip>
+          </div>
+          <RadioGroup
+            value={formData.cytogenetic}
+            onValueChange={(value) => setFormData({ ...formData, cytogenetic: value })}
+            className="flex gap-4"
+          >
+            <div className="flex items-center gap-2">
+              <RadioGroupItem value="yes" id="cyto-yes" />
+              <Label htmlFor="cyto-yes" className="cursor-pointer">Yes</Label>
+            </div>
+            <div className="flex items-center gap-2">
+              <RadioGroupItem value="no" id="cyto-no" />
+              <Label htmlFor="cyto-no" className="cursor-pointer">No</Label>
+            </div>
+            <div className="flex items-center gap-2">
+              <RadioGroupItem value="unsure" id="cyto-unsure" />
+              <Label htmlFor="cyto-unsure" className="cursor-pointer">Unsure</Label>
+            </div>
+          </RadioGroup>
         </div>
 
         <Button onClick={calculateRisk} className="w-full btn-primary py-6 text-base">
