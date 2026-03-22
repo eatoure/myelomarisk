@@ -25,11 +25,22 @@
     <meta name="twitter:site" content="@vincentrk" />
     <meta name="twitter:image" content="./social-preview.svg" />
     <meta name="twitter:image:alt" content="MyelomaRisk risk calculator preview" />
-    <script type="module" crossorigin src="./assets/index-Ds9GiCMM.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-DInej22I.css">
+    <script type="module" crossorigin src="./assets/index-2gOFCzVz.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-Dm-bNaAy.css">
   </head>
 
   <body>
     <div id="root"></div>
+    <script>
+      const isGitHubPagesRoot =
+        location.hostname.endsWith("github.io") &&
+        !location.port &&
+        location.pathname === "/";
+
+      if (isGitHubPagesRoot) {
+        const hash = location.hash || "#/";
+        location.replace(`/site/${hash}`);
+      }
+    </script>
   </body>
 </html>
