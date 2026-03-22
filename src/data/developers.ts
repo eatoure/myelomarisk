@@ -12,7 +12,7 @@ export interface DeveloperProfile {
 
 export const developers: DeveloperProfile[] = [
   {
-    name: "Dr. S. Vincent Rajkumar",
+    name: "Dr. S. Vincent Rajkumar, MD",
     title: "Professor of Medicine, Hematology/Oncology, Mayo Clinic",
     bio: "S. Vincent Rajkumar, M.D., F.R.C.P.C., is Professor of Medicine at Mayo Clinic and a consultant in Hematology and Hematopathology. He chairs the Myeloma Amyloidosis Dysproteinemia Group and co-chairs the International Myeloma Working Group. His research spans clinical, epidemiologic, and laboratory studies in multiple myeloma, MGUS, and amyloidosis, with more than 800 peer reviewed publications.",
     skills: ["Clinical Research", "Epidemiology", "Hematology", "Myeloma and Amyloidosis"],
@@ -21,7 +21,7 @@ export const developers: DeveloperProfile[] = [
     image: withBase("/images/team/VincentRajkumar.jpg"),
   },
   {
-    name: "Dr. Shaji Kumar",
+    name: "Dr. Shaji Kumar, MD",
     title: "Professor of Medicine, Hematology/Oncology, Mayo Clinic",
     bio: "Shaji Kumar, M.D., is Professor of Medicine at Mayo Clinic and a consultant in Hematology/Oncology. His clinical and translational research focuses on multiple myeloma and amyloidosis, including novel therapeutics, prognostic factors, and disease mechanisms. He has authored more than 500 peer reviewed publications and serves in leadership roles across major professional societies.",
     skills: ["Novel Therapeutics", "Clinical Trials", "Translational Research", "Plasma Cell Disorders"],

@@ -24,7 +24,7 @@ const SmolderingMyelomaGenomic = () => {
   const genomicAuthors = [
     authors[0],
     authors[1],
-    { name: "Francesco Maura, MD", role: "Myeloma Specialist, Memorial Sloan Kettering Cancer Center" },
+    { name: "Dr. Francesco Maura, MD", role: "Myeloma Specialist, Memorial Sloan Kettering Cancer Center" },
     authors[2],
   ];
 
