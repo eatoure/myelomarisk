@@ -49,16 +49,16 @@ const Waldenstrom = () => {
     let survival: string;
 
     if (score === 0) {
-      riskLevel = "Low-risk";
+      riskLevel = "**Low Risk**";
       survival = "93%";
     } else if (score === 1) {
-      riskLevel = "Low-intermediate";
+      riskLevel = "**Low-Intermediate**";
       survival = "82%";
     } else if (score === 2) {
-      riskLevel = "Intermediate";
+      riskLevel = "**Intermediate**";
       survival = "69%";
     } else {
-      riskLevel = "High-risk";
+      riskLevel = "**High Risk**";
       survival = "55%";
     }
 

@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import SmolderingMyeloma from "./pages/SmolderingMyeloma";
+import SmolderingMyelomaGenomic from "./pages/SmolderingMyelomaGenomic";
 import MultipleMyeloma from "./pages/MultipleMyeloma";
 import MgusPrognosis from "./pages/MgusPrognosis";
 import Amyloidosis from "./pages/Amyloidosis";
@@ -26,6 +27,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/smoldering-myeloma" element={<SmolderingMyeloma />} />
+          <Route path="/smoldering-myeloma-genomic" element={<SmolderingMyelomaGenomic />} />
           <Route path="/multiple-myeloma" element={<MultipleMyeloma />} />
           <Route path="/mgus-prognosis" element={<MgusPrognosis />} />
           <Route path="/amyloidosis" element={<Amyloidosis />} />

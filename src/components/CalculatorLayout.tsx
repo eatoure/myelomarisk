@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ExternalLink, ChevronDown } from "lucide-react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
 import Header from "./Header";
 import Footer from "./Footer";
 import HeroBackdrop from "@/components/HeroBackdrop";
@@ -16,14 +16,16 @@ interface Author {
   role: string;
 }
 
+interface Reference {
+  text: string;
+  url: string;
+}
+
 interface CalculatorLayoutProps {
   title: string;
   description: string;
   children: ReactNode;
-  reference: {
-    text: string;
-    url: string;
-  };
+  reference: Reference | Reference[];
   authors: Author[];
 }
 
@@ -34,6 +36,8 @@ const CalculatorLayout = ({
   reference,
   authors,
 }: CalculatorLayoutProps) => {
+  const references = Array.isArray(reference) ? reference : [reference];
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
@@ -69,16 +73,23 @@ const CalculatorLayout = ({
 
             {/* Reference */}
             <div className="mt-6 p-4 rounded-xl bg-muted/50 animate-fade-in-up" style={{ animationDelay: "100ms" }}>
-              <h3 className="font-semibold text-sm text-foreground mb-2">Reference</h3>
-              <a 
-                href={reference.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-primary hover:underline inline-flex items-center gap-1"
-              >
-                {reference.text}
-                <ExternalLink className="h-3 w-3" />
-              </a>
+              <h3 className="font-semibold text-sm text-foreground mb-2">
+                {references.length === 1 ? "Reference" : "References"}
+              </h3>
+              <div className="space-y-2">
+                {references.map((item) => (
+                  <a
+                    key={item.url}
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-primary hover:underline flex items-start gap-1"
+                  >
+                    <span>{item.text}</span>
+                    <ExternalLink className="h-3 w-3 shrink-0 mt-0.5" />
+                  </a>
+                ))}
+              </div>
             </div>
 
             {/* Authors */}

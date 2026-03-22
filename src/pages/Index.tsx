@@ -7,7 +7,6 @@ import {
   User2, 
   FlaskConical,
   Users,
-  ExternalLink,
   Microscope
 } from "lucide-react";
 import DisclaimerModal from "@/components/DisclaimerModal";
@@ -35,14 +34,20 @@ const Index = () => {
 
   const calculators = [
     {
-      title: "Smoldering Multiple Myeloma",
+      title: "Smoldering Multiple Myeloma: IMWG 2020 Risk Stratification and IMWG Scoring System",
       description: "Calculate 2-year progression risk using the IMWG risk stratification model",
       icon: Activity,
       to: "/smoldering-myeloma",
     },
     {
-      title: "Multiple Myeloma",
-      description: "Estimate progression-free survival and overall survival for newly diagnosed patients",
+      title: "Smoldering Multiple Myeloma: Genomic IMWG Risk Stratification",
+      description: "Combine IMWG 2020 risk status with genomic drivers to refine 2-year progression risk",
+      icon: Activity,
+      to: "/smoldering-myeloma-genomic",
+    },
+    {
+      title: "Multiple Myeloma IMWG Risk Stratification",
+      description: "Risk stratification and prognosis estimation for newly diagnosed patients",
       icon: Droplets,
       to: "/multiple-myeloma",
     },

@@ -15,7 +15,23 @@ interface ResultModalProps {
   additionalInfo?: string;
 }
 
+const renderInlineFormatting = (text: string) => {
+  const parts = text.split(/(\*\*.*?\*\*)/g);
+
+  return parts.map((part, index) => {
+    const isBold = part.startsWith("**") && part.endsWith("**");
+
+    if (!isBold) {
+      return <span key={index}>{part}</span>;
+    }
+
+    return <strong key={index}>{part.slice(2, -2)}</strong>;
+  });
+};
+
 const ResultModal = ({ open, onClose, title, result, additionalInfo }: ResultModalProps) => {
+  const paragraphs = result.split("\n\n");
+
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="max-w-lg bg-card border-border">
@@ -32,9 +48,13 @@ const ResultModal = ({ open, onClose, title, result, additionalInfo }: ResultMod
         
         <div className="space-y-4">
           <div className="p-4 rounded-xl bg-primary/5 border border-primary/10">
-            <p className="text-foreground leading-relaxed">
-              {result}
-            </p>
+            <div className="space-y-3 text-foreground leading-relaxed">
+              {paragraphs.map((paragraph, index) => (
+                <p key={index} className="whitespace-pre-line">
+                  {renderInlineFormatting(paragraph)}
+                </p>
+              ))}
+            </div>
           </div>
 
           {additionalInfo && (
