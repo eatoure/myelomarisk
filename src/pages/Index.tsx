@@ -91,7 +91,7 @@ const Index = () => {
     },
     {
       title: "Development Team",
-      description: "Meet the Mayo Clinic researchers behind MyelomaRisk",
+      description: "Meet the investigators behind MyelomaRisk.com",
       icon: Users,
       to: "/developers",
     },
