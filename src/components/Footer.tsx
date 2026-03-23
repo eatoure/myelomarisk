@@ -58,8 +58,7 @@ const Footer = () => {
 
         <div className="mt-8 pt-8 border-t border-white/10 text-center text-sm text-white/60">
           <p>
-            © {new Date().getFullYear()} MyelomaRisk. A collaboration with Mayo Clinic. 
-            For research and educational purposes only.
+            © {new Date().getFullYear()} MyelomaRisk. For research and educational purposes only.
           </p>
         </div>
       </div>

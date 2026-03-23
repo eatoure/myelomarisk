@@ -1,0 +1,55 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="80" y1="60" x2="1120" y2="570" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07121E"/>
+      <stop offset="0.62" stop-color="#0A4176"/>
+      <stop offset="1" stop-color="#0F7FBE"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="90" y1="508" x2="360" y2="564" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8FE4FF" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.18"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" rx="28" fill="url(#bg)"/>
+  <rect x="64" y="64" width="1072" height="502" rx="28" stroke="white" stroke-opacity="0.12" stroke-width="2"/>
+  <circle cx="1034" cy="136" r="156" fill="white" fill-opacity="0.05"/>
+  <circle cx="1006" cy="134" r="106" fill="white" fill-opacity="0.04"/>
+  <path d="M92 520C184 490 276 488 374 510" stroke="url(#accent)" stroke-width="6" stroke-linecap="round"/>
+
+  <rect x="92" y="92" width="226" height="42" rx="21" fill="white" fill-opacity="0.1"/>
+  <text x="116" y="119" fill="#EAF7FF" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" letter-spacing="1.6">
+    PLASMA CELL DISORDERS
+  </text>
+
+  <text x="92" y="230" fill="white" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700">
+    MyelomaRisk
+  </text>
+  <text x="92" y="298" fill="#DCEFFF" font-family="Arial, Helvetica, sans-serif" font-size="33">
+    Clinical risk stratification and prognosis calculators
+  </text>
+  <text x="92" y="348" fill="#BCDDF4" font-family="Arial, Helvetica, sans-serif" font-size="28">
+    Multiple Myeloma  •  Smoldering Myeloma  •  MGUS  •  Amyloidosis
+  </text>
+
+  <line x1="792" y1="190" x2="792" y2="458" stroke="white" stroke-opacity="0.18" stroke-width="2"/>
+  <text x="836" y="220" fill="#8FE4FF" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" letter-spacing="1.2">
+    INCLUDED TOOLS
+  </text>
+  <text x="836" y="276" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="28">
+    • IMWG risk calculators
+  </text>
+  <text x="836" y="322" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="28">
+    • Genomic SMM stratification
+  </text>
+  <text x="836" y="368" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="28">
+    • Frailty and WM tools
+  </text>
+  <text x="836" y="414" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="28">
+    • Mobile-friendly access
+  </text>
+
+  <text x="92" y="548" fill="#EAF6FF" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="600">
+    Research and educational purposes only
+  </text>
+</svg>

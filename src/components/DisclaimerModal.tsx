@@ -24,7 +24,7 @@ const DisclaimerModal = ({ onAccept }: DisclaimerModalProps) => {
 
   return (
     <Dialog open={open} onOpenChange={() => {}}>
-      <DialogContent className="max-w-2xl bg-card border-border p-0 overflow-hidden [&>button]:hidden">
+      <DialogContent className="flex max-h-[calc(100vh-2rem)] w-[calc(100vw-1rem)] max-w-2xl flex-col gap-0 overflow-hidden border-border bg-card p-0 sm:w-full [&>button]:hidden">
         <div className="bg-gradient-primary p-6">
           <DialogHeader>
             <div className="flex items-center gap-3">
@@ -38,7 +38,8 @@ const DisclaimerModal = ({ onAccept }: DisclaimerModalProps) => {
           </DialogHeader>
         </div>
         
-        <div className="p-6 space-y-6">
+        {/* Keep the header fixed while the disclaimer body scrolls on smaller screens. */}
+        <div className="flex-1 overflow-y-auto p-6">
           <div className="flex gap-3 p-4 rounded-xl bg-amber-50 border border-amber-200">
             <AlertTriangle className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
             <p className="text-sm text-amber-800">
@@ -46,7 +47,7 @@ const DisclaimerModal = ({ onAccept }: DisclaimerModalProps) => {
             </p>
           </div>
 
-          <DialogDescription className="text-foreground/80 text-sm leading-relaxed space-y-4">
+          <DialogDescription className="mt-6 space-y-4 text-sm leading-relaxed text-foreground/80">
             <p>
               Those utilizing the <strong>MyelomaRisk Calculator</strong> need to acknowledge that 
               the Calculator, as a research instrument, hasn't received validation or endorsement 
@@ -72,7 +73,7 @@ const DisclaimerModal = ({ onAccept }: DisclaimerModalProps) => {
 
           <Button
             onClick={handleAccept}
-            className="w-full btn-primary text-base py-6"
+            className="mt-6 w-full btn-primary py-6 text-base"
           >
             I Understand and Agree
           </Button>
