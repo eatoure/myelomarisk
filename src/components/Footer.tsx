@@ -26,13 +26,13 @@ const Footer = () => {
             </h3>
             <div className="space-y-2">
               <a 
-                href="https://x.com/MayoMyeloma" 
+                href="https://x.com/VincentRK" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-blue-accent hover:text-white transition-colors text-sm"
               >
                 <X className="h-4 w-4" />
-                S. Vincent Rajkumar (@MayoMyeloma)
+                S. Vincent Rajkumar (@VincentRK)
               </a>
               <a 
                 href="https://x.com/myelomaMD" 

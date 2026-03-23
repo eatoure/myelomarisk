@@ -17,7 +17,7 @@ export const developers: DeveloperProfile[] = [
     bio: "S. Vincent Rajkumar, M.D., F.R.C.P.C., is Professor of Medicine at Mayo Clinic and a consultant in Hematology and Hematopathology. He chairs the Myeloma Amyloidosis Dysproteinemia Group and co-chairs the International Myeloma Working Group. His research spans clinical, epidemiologic, and laboratory studies in multiple myeloma, MGUS, and amyloidosis, with more than 800 peer reviewed publications.",
     skills: ["Clinical Research", "Epidemiology", "Hematology", "Myeloma and Amyloidosis"],
     email: "vincerk@gmail.com",
-    twitter: "@MayoMyeloma",
+    twitter: "@VincentRK",
     image: withBase("/images/team/VincentRajkumar.jpg"),
   },
   {

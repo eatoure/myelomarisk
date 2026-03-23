@@ -32,7 +32,7 @@ const Developers = () => {
               Development Team
             </h1>
             <p className="text-lg text-white/80 max-w-2xl mx-auto">
-              Meet the Mayo Clinic researchers and developers behind MyelomaRisk
+              Meet the investigators behind MyelomaRisk.com
             </p>
           </div>
         </div>
