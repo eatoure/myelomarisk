@@ -3,6 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import CalculatorLayout from "@/components/CalculatorLayout";
 import ResultModal from "@/components/ResultModal";
 import { useToast } from "@/hooks/use-toast";
@@ -11,7 +18,7 @@ import { authors } from "@/data/developers";
 const Waldenstrom = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
-    age: "",
+    ageGroup: "",
     albumin: "",
     elevatedLdh: false,
   });
@@ -19,9 +26,9 @@ const Waldenstrom = () => {
   const [result, setResult] = useState("");
 
   const calculateRisk = () => {
-    const { age, albumin, elevatedLdh } = formData;
-    
-    if (!age || !albumin) {
+    const { ageGroup, albumin, elevatedLdh } = formData;
+
+    if (!ageGroup || !albumin) {
       toast({
         title: "Missing Information",
         description: "Please fill in all required fields.",
@@ -30,14 +37,13 @@ const Waldenstrom = () => {
       return;
     }
 
-    const ageVal = parseFloat(age);
     const albuminVal = parseFloat(albumin);
-    
+
     let score = 0;
-    
+
     // Age score
-    if (ageVal > 75) score += 2;
-    else if (ageVal >= 66) score += 1;
+    if (ageGroup === ">75") score += 2;
+    else if (ageGroup === "66-75") score += 1;
 
     // Albumin < 3.5
     if (albuminVal < 3.5) score += 1;
@@ -77,20 +83,22 @@ const Waldenstrom = () => {
       authors={authors}
     >
       <div className="space-y-6">
-        {/* Age */}
+        {/* Age Group */}
         <div>
-          <Label htmlFor="age" className="label-field">
-            Age (years)
-          </Label>
-          <Input
-            id="age"
-            type="number"
-            step="1"
-            placeholder="e.g., 65"
-            className="input-field"
-            value={formData.age}
-            onChange={(e) => setFormData({ ...formData, age: e.target.value })}
-          />
+          <Label className="label-field">Age Group (years)</Label>
+          <Select
+            value={formData.ageGroup}
+            onValueChange={(value) => setFormData({ ...formData, ageGroup: value })}
+          >
+            <SelectTrigger className="input-field">
+              <SelectValue placeholder="Select age group" />
+            </SelectTrigger>
+            <SelectContent className="bg-popover">
+              <SelectItem value="<=65">≤65 years</SelectItem>
+              <SelectItem value="66-75">66-75 years</SelectItem>
+              <SelectItem value=">75">&gt;75 years</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         {/* Albumin */}
