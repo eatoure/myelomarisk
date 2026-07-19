@@ -12,6 +12,7 @@ import Amyloidosis from "./pages/Amyloidosis";
 import Frailty from "./pages/Frailty";
 import Waldenstrom from "./pages/Waldenstrom";
 import Developers from "./pages/Developers";
+import FAQ from "./pages/FAQ";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/frailty" element={<Frailty />} />
           <Route path="/waldenstrom" element={<Waldenstrom />} />
           <Route path="/developers" element={<Developers />} />
+          <Route path="/faq" element={<FAQ />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </HashRouter>

@@ -38,9 +38,17 @@ const Header = () => {
             >
               Team
             </Link>
-            <a 
-              href="https://msmart.org" 
-              target="_blank" 
+            <Link
+              to="/faq"
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                location.pathname === "/faq" ? "text-primary" : "text-muted-foreground"
+              }`}
+            >
+              FAQ
+            </Link>
+            <a
+              href="https://msmart.org"
+              target="_blank"
               rel="noopener noreferrer"
               className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
             >
@@ -74,9 +82,16 @@ const Header = () => {
             >
               Team
             </Link>
-            <a 
-              href="https://msmart.org" 
-              target="_blank" 
+            <Link
+              to="/faq"
+              className="block px-4 py-2 rounded-lg text-sm font-medium hover:bg-muted transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              FAQ
+            </Link>
+            <a
+              href="https://msmart.org"
+              target="_blank"
               rel="noopener noreferrer"
               className="block px-4 py-2 rounded-lg text-sm font-medium hover:bg-muted transition-colors"
             >
