@@ -49,19 +49,25 @@ const DisclaimerModal = ({ onAccept }: DisclaimerModalProps) => {
 
           <DialogDescription className="mt-6 space-y-4 text-sm leading-relaxed text-foreground/80">
             <p>
-              Those utilizing the <strong>MyelomaRisk Calculator</strong> need to acknowledge that 
-              the Calculator, as a research instrument, hasn't received validation or endorsement 
-              by the United States Food and Drug Administration, the European Medicines Agency, 
-              or any equivalent entity.
+              Those utilizing the <strong>MyelomaRisk Calculator</strong> should be aware and need
+              to acknowledge that the website and Calculator are fully based on peer-reviewed
+              published papers and its role is simply to make the published information available
+              in one place and make the estimations easier. It hasn't received validation or
+              endorsement by the United States Food and Drug Administration, the European Medicines
+              Agency, or any equivalent entity.
             </p>
             <p>
-              The Calculator is still in its development phase and is delivered "as is," devoid 
-              of any supplementary services. mSMART reserves the right to implement changes to 
-              the Calculator at its discretion.
+              The Calculator is still in its development phase and is delivered "as is," devoid
+              of any supplementary services. We reserve the right to implement changes to
+              the Calculator based on new published information and at our discretion.
             </p>
             <p>
-              The Calculator serves purely as an analytical tool and is not meant to replace 
+              The Calculator serves purely as an analytical tool and is not meant to replace
               professional medical guidance. If you have concerns, consult your doctor.
+            </p>
+            <p>
+              We don't collect or store any data. All calculations are made on the user's own
+              computer.
             </p>
             <p>
               This Calculator is designed for non-commercial use only. For commercial usage, 
