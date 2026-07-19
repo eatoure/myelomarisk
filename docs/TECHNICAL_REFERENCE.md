@@ -680,11 +680,13 @@ public/
 
 ### Full Disclaimer for Modal
 ```
-Those utilizing the MyelomaRisk on this platform ("Calculator") need to acknowledge that the Calculator, as a research instrument, hasn't received validation or endorsement by the United States Food and Drug Administration, the European Medicines Agency, or any equivalent entity. The Calculator is still in its development phase and is delivered "as is," devoid of any supplementary services.
+Those utilizing the MyelomaRisk Calculator should be aware and need to acknowledge that the website and Calculator are fully based on peer-reviewed published papers and its role is simply to make the published information available in one place and make the estimations easier. It hasn't received validation or endorsement by the United States Food and Drug Administration, the European Medicines Agency, or any equivalent entity. The Calculator is still in its development phase and is delivered "as is," devoid of any supplementary services.
 
-mSMART reserves the right to implement changes to the Calculator at its discretion, without the obligation to notify the Calculator's users. The Calculator serves purely as an analytical tool and is not meant to replace professional medical guidance, or to provide medical diagnosis or prognosis.
+We reserve the right to implement changes to the Calculator based on new published information and at our discretion, without the obligation to notify the Calculator's users. The Calculator serves purely as an analytical tool and is not meant to replace professional medical guidance, or to provide medical diagnosis or prognosis.
 
-If you have concerns regarding test outcomes or any health condition, it is recommended to consult your doctor or an accredited healthcare provider. mSMART will not be held responsible for any patient or Calculator user in relation to the Calculator's usage and/or results, or interpretation of its results. This Calculator is designed for non-commercial use only. For usage in a commercial context or to acquire a license, please reach out to S. Vincent Rajkumar (vincerk@gmail.com) or Shaji K. Kumar (kumarshaji@hotmail.com).
+We don't collect or store any data. All calculations are made on the user's own computer.
+
+If you have concerns regarding test outcomes or any health condition, it is recommended to consult your doctor or an accredited healthcare provider. We will not be held responsible for any patient or Calculator user in relation to the Calculator's usage and/or results, or interpretation of its results. This Calculator is designed for non-commercial use only. For usage in a commercial context or to acquire a license, please reach out to S. Vincent Rajkumar (vincerk@gmail.com) or Shaji K. Kumar (kumarshaji@hotmail.com).
 ```
 
 ---
