@@ -6,6 +6,8 @@ import CalculatorLayout from "@/components/CalculatorLayout";
 import ResultModal from "@/components/ResultModal";
 import { useToast } from "@/hooks/use-toast";
 import { authors } from "@/data/developers";
+import NtProBnpFromBnp from "@/components/NtProBnpFromBnp";
+import { isPreviewUnlocked } from "@/lib/preview";
 
 const Amyloidosis = () => {
   const { toast } = useToast();
@@ -17,6 +19,10 @@ const Amyloidosis = () => {
   });
   const [showResult, setShowResult] = useState(false);
   const [result, setResult] = useState("");
+  // Whether the NT-proBNP in the form came from a BNP conversion rather than a
+  // direct measurement. Gated with the rest of the conversion work until sign-off.
+  const [ntProBnpConverted, setNtProBnpConverted] = useState(false);
+  const showConversionHelper = isPreviewUnlocked();
 
   const calculateRisk = () => {
     const { troponin, lambdaLevel, kappaLevel, ntProBnp } = formData;
@@ -55,7 +61,13 @@ const Amyloidosis = () => {
 
     const stage = stageMap[score];
 
-    setResult(`The risk factors provided correspond with ${stage} of AL amyloidosis.`);
+    const conversionNote = ntProBnpConverted
+      ? "\n\nThis result used an NT-proBNP estimated from a measured BNP, not a directly measured NT-proBNP."
+      : "";
+
+    setResult(
+      `The risk factors provided correspond with ${stage} of AL amyloidosis.${conversionNote}`
+    );
     setShowResult(true);
   };
 
@@ -130,8 +142,19 @@ const Amyloidosis = () => {
             placeholder="e.g., 1800"
             className="input-field"
             value={formData.ntProBnp}
-            onChange={(e) => setFormData({ ...formData, ntProBnp: e.target.value })}
+            onChange={(e) => {
+              setNtProBnpConverted(false);
+              setFormData({ ...formData, ntProBnp: e.target.value });
+            }}
           />
+          {showConversionHelper && (
+            <NtProBnpFromBnp
+              onApply={(ntProBnp) => {
+                setNtProBnpConverted(true);
+                setFormData({ ...formData, ntProBnp });
+              }}
+            />
+          )}
         </div>
 
         <Button onClick={calculateRisk} className="w-full btn-primary py-6 text-base">
