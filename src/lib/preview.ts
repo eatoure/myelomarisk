@@ -1,25 +1,29 @@
 /**
- * Gating for calculators that are still under clinical review.
+ * Staging preview.
+ *
+ * Preview builds (`npm run dev`, `npm run build:preview`) put the whole site
+ * behind a single password and show every staged change in place, exactly as
+ * it would look once live. Production builds have no password configured, so
+ * the gate disappears entirely — and in practice production does not carry
+ * unreleased work at all, since it lives on a separate branch.
  *
  * SECURITY NOTE: this is a client-side gate on a static site. The expected
  * password is compiled into the JavaScript bundle and is readable by anyone
- * who opens developer tools. It exists to keep in-testing calculators from
- * being stumbled upon by patients or clinicians browsing the live site — it
- * is NOT a security control. Do not put anything genuinely confidential
- * behind it.
+ * who opens developer tools. It keeps the staging site from being stumbled
+ * upon; it is NOT a security control.
  */
 
 const STORAGE_KEY = "myeloma-risk-preview-unlocked";
 
-/** Configured in .env.local (not committed) or a CI secret. */
+/** Configured in .env.preview.local (not committed) or a Netlify env var. */
 export const previewPassword: string =
   (import.meta.env.VITE_PREVIEW_PASSWORD as string | undefined) ?? "";
 
-/** When no password is configured, preview routes stay closed. */
-export const isPreviewConfigured = previewPassword.length > 0;
+/** True on staging builds, false in production. */
+export const isPreviewBuild = previewPassword.length > 0;
 
 export const isPreviewUnlocked = (): boolean => {
-  if (!isPreviewConfigured) return false;
+  if (!isPreviewBuild) return false;
   try {
     return sessionStorage.getItem(STORAGE_KEY) === "true";
   } catch {
@@ -28,7 +32,7 @@ export const isPreviewUnlocked = (): boolean => {
 };
 
 export const unlockPreview = (attempt: string): boolean => {
-  if (!isPreviewConfigured) return false;
+  if (!isPreviewBuild) return false;
   if (attempt !== previewPassword) return false;
   try {
     sessionStorage.setItem(STORAGE_KEY, "true");
@@ -38,28 +42,33 @@ export const unlockPreview = (attempt: string): boolean => {
   return true;
 };
 
-export const lockPreview = () => {
-  try {
-    sessionStorage.removeItem(STORAGE_KEY);
-  } catch {
-    /* nothing to clear */
-  }
-};
-
-export interface PreviewCalculator {
+export interface StagedChange {
   title: string;
-  description: string;
+  /** What changed, in terms a reviewer can approve or reject. */
+  summary: string;
+  /** Where to see it. */
   to: string;
-  status: string;
+  /** Anything still unresolved that a reviewer should weigh in on. */
+  openQuestion?: string;
 }
 
-/** Calculators visible only behind the preview gate, pending sign-off. */
-export const previewCalculators: PreviewCalculator[] = [
+/**
+ * Changes on this branch awaiting sign-off. Shown to reviewers on the staging
+ * site so they know what they are being asked to approve.
+ */
+export const stagedChanges: StagedChange[] = [
   {
-    title: "AL Amyloidosis: NT-proBNP ↔ BNP Conversion",
-    description:
-      "Convert between NT-proBNP and BNP using the conversion formula from Muchtar et al.",
+    title: "NT-proBNP ↔ BNP conversion calculator",
+    summary:
+      "New calculator converting between NT-proBNP and BNP in AL amyloidosis, using the formula from Muchtar et al. (JACC CardioOncology, 2026).",
     to: "/bnp-conversion",
-    status: "Awaiting review — please confirm the logarithm base used in the published formula.",
+    openQuestion:
+      "The paper writes the model as log(BNP) = 0.3142036 + 0.7014077 × log(NT-proBNP) without stating the logarithm base, and the base changes the result by roughly 50%. Natural log is used here because it reproduces the established equivalence (NT-proBNP 332 → BNP 80.3, against the published threshold of 81); base-10 gives 121. Please confirm.",
+  },
+  {
+    title: "BNP helper on the amyloidosis staging calculator",
+    summary:
+      "The amyloidosis form now offers to convert a measured BNP into NT-proBNP and fill the field, for patients where only BNP is available. Staging results produced this way say the value was estimated.",
+    to: "/amyloidosis",
   },
 ];

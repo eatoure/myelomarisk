@@ -7,7 +7,8 @@ import {
   User2, 
   FlaskConical,
   Users,
-  Microscope
+  Microscope,
+  ArrowLeftRight
 } from "lucide-react";
 import DisclaimerModal from "@/components/DisclaimerModal";
 import CalculatorCard from "@/components/CalculatorCard";
@@ -76,6 +77,12 @@ const Index = () => {
       description: "Stage AL amyloidosis using the Mayo 2012 biomarker model",
       icon: Heart,
       to: "/amyloidosis",
+    },
+    {
+      title: "AL Amyloidosis: NT-proBNP ↔ BNP Conversion",
+      description: "Convert between NT-proBNP and BNP using the published conversion formula",
+      icon: ArrowLeftRight,
+      to: "/bnp-conversion",
     },
     {
       title: "Frailty Classification",

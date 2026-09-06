@@ -7,7 +7,6 @@ import ResultModal from "@/components/ResultModal";
 import { useToast } from "@/hooks/use-toast";
 import { authors } from "@/data/developers";
 import NtProBnpFromBnp from "@/components/NtProBnpFromBnp";
-import { isPreviewUnlocked } from "@/lib/preview";
 
 const Amyloidosis = () => {
   const { toast } = useToast();
@@ -20,9 +19,8 @@ const Amyloidosis = () => {
   const [showResult, setShowResult] = useState(false);
   const [result, setResult] = useState("");
   // Whether the NT-proBNP in the form came from a BNP conversion rather than a
-  // direct measurement. Gated with the rest of the conversion work until sign-off.
+  // direct measurement, so the result can say so.
   const [ntProBnpConverted, setNtProBnpConverted] = useState(false);
-  const showConversionHelper = isPreviewUnlocked();
 
   const calculateRisk = () => {
     const { troponin, lambdaLevel, kappaLevel, ntProBnp } = formData;
@@ -147,14 +145,12 @@ const Amyloidosis = () => {
               setFormData({ ...formData, ntProBnp: e.target.value });
             }}
           />
-          {showConversionHelper && (
-            <NtProBnpFromBnp
-              onApply={(ntProBnp) => {
-                setNtProBnpConverted(true);
-                setFormData({ ...formData, ntProBnp });
-              }}
-            />
-          )}
+          <NtProBnpFromBnp
+            onApply={(ntProBnp) => {
+              setNtProBnpConverted(true);
+              setFormData({ ...formData, ntProBnp });
+            }}
+          />
         </div>
 
         <Button onClick={calculateRisk} className="w-full btn-primary py-6 text-base">
