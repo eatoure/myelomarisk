@@ -1,10 +1,10 @@
 # Netlify configuration.
 #
-# NOTE: myelomarisk.com was previously configured entirely through the Netlify
-# UI (there was no netlify.toml in the repo). The [build] block below is written
-# to match Netlify's defaults for this project so production behaviour does not
-# change. Confirm it against the site's UI settings before merging — a
-# netlify.toml overrides the UI.
+# myelomarisk.com was previously configured entirely through the Netlify UI
+# (there was no netlify.toml in the repo). The [build] block below matches the
+# dashboard's settings exactly (verified 2026-09-06: build command
+# `npm run build`, publish directory `dist`), so production behaviour is
+# unchanged. A netlify.toml overrides the UI, so keep the two in step.
 
 [build]
   command = "npm run build"
@@ -12,7 +12,7 @@
 
 # Reviewer preview site (deploy.myelomarisk.com).
 #
-# Branch deploys of `preview` build with the reviewer password compiled in, so
+# Branch deploys of `deploy` build with the reviewer password compiled in, so
 # calculators awaiting clinical sign-off are reachable at /#/preview. Production
 # never gets the password — see docs/REVIEWER_PREVIEW.md.
 [context.branch-deploy]
@@ -21,13 +21,7 @@
 [context.deploy-preview]
   command = "npm run build:preview"
 
-# Keep every non-production deploy out of search results.
-[[context.branch-deploy.headers]]
-  for = "/*"
-  [context.branch-deploy.headers.values]
-    X-Robots-Tag = "noindex, nofollow"
-
-[[context.deploy-preview.headers]]
-  for = "/*"
-  [context.deploy-preview.headers.values]
-    X-Robots-Tag = "noindex, nofollow"
+# NOTE: headers in netlify.toml are global and are NOT evaluated per deploy
+# context, so the noindex header for previews cannot be set here without also
+# deindexing production. `npm run build:preview` writes dist/_headers instead
+# (scripts/preview-headers.mjs).
