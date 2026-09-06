@@ -18,16 +18,19 @@ import FAQ from "./pages/FAQ";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 import PreviewGate from "./components/PreviewGate";
+import StagingBanner from "./components/StagingBanner";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <PreviewGate>
       <Toaster />
       <Sonner />
       <HashRouter>
         <ScrollToTop />
+        <StagingBanner />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/smoldering-myeloma" element={<SmolderingMyeloma />} />
@@ -36,14 +39,7 @@ const App = () => (
           <Route path="/mgus-prognosis" element={<MgusPrognosis />} />
           <Route path="/amyloidosis" element={<Amyloidosis />} />
           <Route path="/preview" element={<Preview />} />
-          <Route
-            path="/bnp-conversion"
-            element={
-              <PreviewGate>
-                <BnpConversion />
-              </PreviewGate>
-            }
-          />
+          <Route path="/bnp-conversion" element={<BnpConversion />} />
           <Route path="/frailty" element={<Frailty />} />
           <Route path="/waldenstrom" element={<Waldenstrom />} />
           <Route path="/developers" element={<Developers />} />
@@ -51,6 +47,7 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
         </Routes>
       </HashRouter>
+      </PreviewGate>
     </TooltipProvider>
   </QueryClientProvider>
 );
