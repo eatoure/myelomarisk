@@ -9,12 +9,15 @@ import SmolderingMyelomaGenomic from "./pages/SmolderingMyelomaGenomic";
 import MultipleMyeloma from "./pages/MultipleMyeloma";
 import MgusPrognosis from "./pages/MgusPrognosis";
 import Amyloidosis from "./pages/Amyloidosis";
+import BnpConversion from "./pages/BnpConversion";
+import Preview from "./pages/Preview";
 import Frailty from "./pages/Frailty";
 import Waldenstrom from "./pages/Waldenstrom";
 import Developers from "./pages/Developers";
 import FAQ from "./pages/FAQ";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
+import PreviewGate from "./components/PreviewGate";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +35,15 @@ const App = () => (
           <Route path="/multiple-myeloma" element={<MultipleMyeloma />} />
           <Route path="/mgus-prognosis" element={<MgusPrognosis />} />
           <Route path="/amyloidosis" element={<Amyloidosis />} />
+          <Route path="/preview" element={<Preview />} />
+          <Route
+            path="/bnp-conversion"
+            element={
+              <PreviewGate>
+                <BnpConversion />
+              </PreviewGate>
+            }
+          />
           <Route path="/frailty" element={<Frailty />} />
           <Route path="/waldenstrom" element={<Waldenstrom />} />
           <Route path="/developers" element={<Developers />} />
