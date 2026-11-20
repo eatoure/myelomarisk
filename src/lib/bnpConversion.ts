@@ -7,8 +7,9 @@
  * The publication does not state the logarithm base. Natural log is used here
  * because it reproduces the established clinical equivalence (NT-proBNP 332
  * ng/L -> BNP 80.3, against the published threshold of 81); a base-10 reading
- * gives 121, which matches no known threshold. CONFIRM WITH THE AUTHORS before
- * this is published.
+ * gives 121, which matches no known threshold. Approved for release by the
+ * reviewers on the staging site in November 2026. If the authors ever state a
+ * base, revisit this; switching to base 10 means Math.log10 and 10 ** x.
  */
 export const CONVERSION_INTERCEPT = 0.3142036;
 export const CONVERSION_SLOPE = 0.7014077;

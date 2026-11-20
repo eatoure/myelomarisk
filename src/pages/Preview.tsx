@@ -30,7 +30,9 @@ const Preview = () => (
         <div className="max-w-2xl mx-auto space-y-6">
           <div className="bg-card rounded-2xl shadow-card p-6 md:p-8 animate-fade-in-up">
             <p className="text-muted-foreground">
-              {isPreviewBuild
+              {isPreviewBuild && stagedChanges.length === 0
+                ? "Nothing is awaiting approval right now. Everything on this staging site matches myelomarisk.com."
+                : isPreviewBuild
                 ? "These changes are live on this staging site but not on myelomarisk.com. Try them here and let us know whether they are ready to publish."
                 : "This build has nothing staged for review."}
             </p>

@@ -57,18 +57,6 @@ export interface StagedChange {
  * site so they know what they are being asked to approve.
  */
 export const stagedChanges: StagedChange[] = [
-  {
-    title: "NT-proBNP ↔ BNP conversion calculator",
-    summary:
-      "New calculator converting between NT-proBNP and BNP in AL amyloidosis, using the formula from Muchtar et al. (JACC CardioOncology, 2026).",
-    to: "/bnp-conversion",
-    openQuestion:
-      "The paper writes the model as log(BNP) = 0.3142036 + 0.7014077 × log(NT-proBNP) without stating the logarithm base, and the base changes the result by roughly 50%. Natural log is used here because it reproduces the established equivalence (NT-proBNP 332 → BNP 80.3, against the published threshold of 81); base-10 gives 121. Please confirm.",
-  },
-  {
-    title: "BNP helper on the amyloidosis staging calculator",
-    summary:
-      "The amyloidosis form now offers to convert a measured BNP into NT-proBNP and fill the field, for patients where only BNP is available. Staging results produced this way say the value was estimated.",
-    to: "/amyloidosis",
-  },
+  // Add an entry here for each change on the `deploy` branch awaiting sign-off.
+  // Empty it again when the branch is merged to main.
 ];

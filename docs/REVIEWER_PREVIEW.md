@@ -89,8 +89,18 @@ but as described above it is obfuscation only. If real access control is
 needed without a Netlify paid plan, put the preview behind Cloudflare Access,
 which can restrict by email address for free.
 
-## Promoting a calculator to live
+## Staging workflow
 
-1. Remove its entry from `previewCalculators` in `src/lib/preview.ts`.
-2. Unwrap its `<Route>` from `<PreviewGate>` in `src/App.tsx`.
-3. Add its card to the `calculators` array in `src/pages/Index.tsx`.
+1. Build the change on the `deploy` branch and push it. Netlify rebuilds
+   https://deploy--myelomarisk.netlify.app with the whole site behind the
+   reviewer password.
+2. Add an entry to `stagedChanges` in `src/lib/preview.ts` describing what is
+   being asked for approval, and any open question for reviewers.
+3. Staged work appears in place, exactly as it will look live. There is no
+   per-feature gating; the branch itself keeps it off production.
+
+## Going live
+
+1. Empty `stagedChanges` in `src/lib/preview.ts`.
+2. Merge `deploy` into `main` and push. Production has no preview password
+   configured, so the gate and the staging banner render nothing.

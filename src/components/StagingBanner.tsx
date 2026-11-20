@@ -19,7 +19,9 @@ const StagingBanner = () => {
           Staging preview — not the live site
         </span>
         <Link to="/preview" className="underline underline-offset-2 hover:no-underline">
-          {count} {count === 1 ? "change" : "changes"} awaiting approval
+          {count === 0
+            ? "Nothing awaiting approval"
+            : `${count} ${count === 1 ? "change" : "changes"} awaiting approval`}
         </Link>
       </div>
     </div>
