@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, ArrowRight, CircleHelp } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroBackdrop from "@/components/HeroBackdrop";
@@ -48,16 +48,6 @@ const Preview = () => (
                 {change.title}
               </h2>
               <p className="text-sm text-muted-foreground mb-4">{change.summary}</p>
-
-              {change.openQuestion && (
-                <div className="mb-4 p-4 rounded-xl bg-amber-500/10 border border-amber-500/30">
-                  <p className="text-sm font-semibold text-foreground mb-1 inline-flex items-center gap-2">
-                    <CircleHelp className="h-4 w-4" />
-                    Needs your input
-                  </p>
-                  <p className="text-sm text-muted-foreground">{change.openQuestion}</p>
-                </div>
-              )}
 
               <Link
                 to={change.to}
