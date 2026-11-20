@@ -39,3 +39,6 @@ Thumbs.db
 
 # Backup
 *_BACKUP_*
+
+# Unpublished manuscripts used as calculator sources (confidential, never commit)
+docs/*_R[0-9]*.pdf

@@ -8,7 +8,8 @@ import {
   FlaskConical,
   Users,
   Microscope,
-  ArrowLeftRight
+  ArrowLeftRight,
+  Syringe
 } from "lucide-react";
 import DisclaimerModal from "@/components/DisclaimerModal";
 import CalculatorCard from "@/components/CalculatorCard";
@@ -83,6 +84,12 @@ const Index = () => {
       description: "Convert between NT-proBNP and BNP using the published conversion formula",
       icon: ArrowLeftRight,
       to: "/bnp-conversion",
+    },
+    {
+      title: "BCMA CAR-T: IMWG SCOPE-MM Score",
+      description: "Pre-apheresis risk of progression and toxicity with ide-cel or cilta-cel",
+      icon: Syringe,
+      to: "/scope-mm",
     },
     {
       title: "Frailty Classification",
