@@ -9,7 +9,8 @@ import {
   Users,
   Microscope,
   ArrowLeftRight,
-  Syringe
+  Syringe,
+  Link2
 } from "lucide-react";
 import DisclaimerModal from "@/components/DisclaimerModal";
 import CalculatorCard from "@/components/CalculatorCard";
@@ -84,6 +85,12 @@ const Index = () => {
       description: "Convert between NT-proBNP and BNP using the published conversion formula",
       icon: ArrowLeftRight,
       to: "/bnp-conversion",
+    },
+    {
+      title: "Bispecific T-cell Engagers: CHARGE Index",
+      description: "Risk of early treatment failure with teclistamab, elranatamab or talquetamab",
+      icon: Link2,
+      to: "/charge",
     },
     {
       title: "BCMA CAR-T: IMWG SCOPE-MM Score",

@@ -11,6 +11,7 @@ import MgusPrognosis from "./pages/MgusPrognosis";
 import Amyloidosis from "./pages/Amyloidosis";
 import BnpConversion from "./pages/BnpConversion";
 import ScopeMm from "./pages/ScopeMm";
+import Charge from "./pages/Charge";
 import Preview from "./pages/Preview";
 import Frailty from "./pages/Frailty";
 import Waldenstrom from "./pages/Waldenstrom";
@@ -42,6 +43,7 @@ const App = () => (
           <Route path="/preview" element={<Preview />} />
           <Route path="/bnp-conversion" element={<BnpConversion />} />
           <Route path="/scope-mm" element={<ScopeMm />} />
+          <Route path="/charge" element={<Charge />} />
           <Route path="/frailty" element={<Frailty />} />
           <Route path="/waldenstrom" element={<Waldenstrom />} />
           <Route path="/developers" element={<Developers />} />

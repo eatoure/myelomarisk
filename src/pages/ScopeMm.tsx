@@ -7,6 +7,7 @@ import CalculatorLayout from "@/components/CalculatorLayout";
 import ResultModal from "@/components/ResultModal";
 import { useToast } from "@/hooks/use-toast";
 import { authors } from "@/data/developers";
+import YesNoField, { YesNo } from "@/components/YesNoField";
 import {
   CAR_HEMATOTOX_HIGH_RISK_MIN,
   SCOPE_MM_ULTRA_HIGH_THRESHOLD,
@@ -16,37 +17,7 @@ import {
   scopeMmRiskGroup,
 } from "@/lib/scopeMm";
 
-type YesNo = "" | "yes" | "no";
 type HematotoxMode = "" | "category" | "labs";
-
-interface YesNoFieldProps {
-  id: string;
-  label: string;
-  hint?: string;
-  value: YesNo;
-  onChange: (value: YesNo) => void;
-}
-
-const YesNoField = ({ id, label, hint, value, onChange }: YesNoFieldProps) => (
-  <div>
-    <Label className="label-field">{label}</Label>
-    {hint && <p className="text-xs text-muted-foreground -mt-1 mb-2">{hint}</p>}
-    <RadioGroup
-      value={value}
-      onValueChange={(v) => onChange(v as YesNo)}
-      className="flex gap-6 mt-2"
-    >
-      <div className="flex items-center gap-2">
-        <RadioGroupItem value="yes" id={`${id}-yes`} />
-        <Label htmlFor={`${id}-yes`} className="cursor-pointer">Yes</Label>
-      </div>
-      <div className="flex items-center gap-2">
-        <RadioGroupItem value="no" id={`${id}-no`} />
-        <Label htmlFor={`${id}-no`} className="cursor-pointer">No</Label>
-      </div>
-    </RadioGroup>
-  </div>
-);
 
 const labFields = [
   { key: "platelets", label: "Platelets (G/L)", placeholder: "e.g., 150", step: "1" },
