@@ -12,8 +12,8 @@
  *      t(14;16), 1q gain/amplification, del(1p), at any time before TCE
  *   H  Hyperferritinemia: ferritin >= 600 ng/mL
  *   A  Anemia: hemoglobin < 9 g/dL
- *   R  Relapsed early (functional high risk): PFS < 18 months on frontline
- *      therapy
+ *   R  Relapsed early (functional high risk): PFS <= 18 months on frontline
+ *      therapy (authors chose <= over the < in the Methods, Nov 2026)
  *   G  General performance status: ECOG >= 2
  *   E  Exposure to prior BCMA-directed therapy
  *

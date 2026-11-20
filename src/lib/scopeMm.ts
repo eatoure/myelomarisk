@@ -43,6 +43,7 @@ export const scopeMmOutcomes: Record<
   {
     label: string;
     points: string;
+    summary: string;
     medianPfs: string;
     pfs12: string;
     os12: string;
@@ -53,6 +54,7 @@ export const scopeMmOutcomes: Record<
   low: {
     label: "Low risk",
     points: "0 points",
+    summary: "This score is considered low risk by SCOPE-MM. After BCMA CAR-T, the expected 1-year PFS is about 71% (95% CI 65–78%) and the expected 1-year overall survival is about 93% (95% CI 90–97%).",
     medianPfs: "18.6 months (95% CI 16.4–21.4)",
     pfs12: "71% (95% CI 65–78%)",
     os12: "93% (95% CI 90–97%)",
@@ -62,6 +64,7 @@ export const scopeMmOutcomes: Record<
   intermediate: {
     label: "Intermediate risk",
     points: "1–2 points",
+    summary: "This score is considered intermediate risk by SCOPE-MM. After BCMA CAR-T, the expected 1-year PFS is about 52% (95% CI 46–58%) and the expected 1-year overall survival is about 80% (95% CI 76–85%).",
     medianPfs: "12.8 months (95% CI 10.1–16.3)",
     pfs12: "52% (95% CI 46–58%)",
     os12: "80% (95% CI 76–85%)",
@@ -71,6 +74,7 @@ export const scopeMmOutcomes: Record<
   high: {
     label: "High risk",
     points: "≥3 points",
+    summary: "This score is considered high risk by SCOPE-MM. After BCMA CAR-T, the expected 1-year PFS is about 27% (95% CI 21–36%) and the expected 1-year overall survival is about 58% (95% CI 51–67%).",
     medianPfs: "6.0 months (95% CI 5.3–8.3)",
     pfs12: "27% (95% CI 21–36%)",
     os12: "58% (95% CI 51–67%)",

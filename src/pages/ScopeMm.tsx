@@ -95,6 +95,7 @@ const ScopeMm = () => {
 
     setResult(
       `SCOPE-MM score: **${points} of 7**, **${o.label}** (${o.points}).\n\n` +
+        `${o.summary}\n\n` +
         `${hematotoxLine}\n\n` +
         `Training cohort outcomes after BCMA-directed CAR-T for this group:\n` +
         `Median PFS: ${o.medianPfs}\n` +
