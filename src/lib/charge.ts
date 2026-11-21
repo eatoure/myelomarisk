@@ -8,12 +8,13 @@
  * revision 2).
  *
  * Six equally weighted factors, one point each (range 0-6):
- *   C  Cytogenetic high risk: del(17p), or >= 2 of del(17p), t(4;14),
- *      t(14;16), 1q gain/amplification, del(1p), at any time before TCE
+ *   C  Cytogenetic high risk: del(17p) regardless of anything else, or any
+ *      two of t(4;14), t(14;16), 1q gain or amp, del(1p), at any time before
+ *      TCE (confirmed by the authors, Nov 2026)
  *   H  Hyperferritinemia: ferritin >= 600 ng/mL
  *   A  Anemia: hemoglobin < 9 g/dL
- *   R  Relapsed early (functional high risk): PFS <= 18 months on frontline
- *      therapy (authors chose <= over the < in the Methods, Nov 2026)
+ *   R  Relapsed early (functional high risk): PFS < 18 months on frontline
+ *      therapy (confirmed by the authors, Nov 2026)
  *   G  General performance status: ECOG >= 2
  *   E  Exposure to prior BCMA-directed therapy
  *
@@ -24,13 +25,16 @@ export const HIGH_RISK_ABNORMALITIES = [
   { key: "del17p", label: "del(17p)" },
   { key: "t414", label: "t(4;14)" },
   { key: "t1416", label: "t(14;16)" },
-  { key: "gain1q", label: "1q gain / amplification (1q21+)" },
+  { key: "gain1q", label: "1q gain or amp" },
   { key: "del1p", label: "del(1p)" },
 ] as const;
 
 export type AbnormalityKey = (typeof HIGH_RISK_ABNORMALITIES)[number]["key"];
 
-/** Adapted IMS/IMWG high-risk cytogenetics: del(17p) alone, or >= 2 listed. */
+/**
+ * del(17p) is high risk on its own. Otherwise any two of t(4;14), t(14;16),
+ * 1q gain or amp and del(1p). One of those alone is not high risk.
+ */
 export const isCytogeneticHighRisk = (present: AbnormalityKey[]): boolean =>
   present.includes("del17p") || new Set(present).size >= 2;
 

@@ -69,7 +69,7 @@ const Charge = () => {
       ["C", "Cytogenetic high risk", b.C],
       ["H", `Hyperferritinemia (≥${FERRITIN_CUTOFF_NG_ML} ng/mL)`, b.H],
       ["A", `Anemia (hemoglobin <${HEMOGLOBIN_CUTOFF_G_DL} g/dL)`, b.A],
-      ["R", `Relapsed early (≤${EARLY_RELAPSE_MONTHS} months on frontline)`, b.R],
+      ["R", `Relapsed early (<${EARLY_RELAPSE_MONTHS} months on frontline)`, b.R],
       ["G", "General performance (ECOG ≥2)", b.G],
       ["E", "Exposure to prior BCMA therapy", b.E],
     ] as const;
@@ -106,10 +106,10 @@ const Charge = () => {
             <div className="space-y-3 text-sm text-muted-foreground">
               <p>One point for each factor present (range 0–6):</p>
               <ul className="space-y-1">
-                <li><span className="text-foreground font-semibold">C</span>ytogenetic high risk: del(17p), or ≥2 of del(17p), t(4;14), t(14;16), 1q gain/amp, del(1p)</li>
+                <li><span className="text-foreground font-semibold">C</span>ytogenetic high risk: del(17p), regardless of anything else; or any two of t(4;14), t(14;16), 1q gain or amp, del(1p)</li>
                 <li><span className="text-foreground font-semibold">H</span>yperferritinemia: ferritin ≥{FERRITIN_CUTOFF_NG_ML} ng/mL</li>
                 <li><span className="text-foreground font-semibold">A</span>nemia: hemoglobin &lt;{HEMOGLOBIN_CUTOFF_G_DL} g/dL</li>
-                <li><span className="text-foreground font-semibold">R</span>elapsed early: PFS ≤{EARLY_RELAPSE_MONTHS} months on frontline therapy</li>
+                <li><span className="text-foreground font-semibold">R</span>elapsed early: PFS &lt;{EARLY_RELAPSE_MONTHS} months on frontline therapy</li>
                 <li><span className="text-foreground font-semibold">G</span>eneral performance status: ECOG ≥2</li>
                 <li><span className="text-foreground font-semibold">E</span>xposure to prior BCMA-directed therapy</li>
               </ul>
@@ -123,7 +123,7 @@ const Charge = () => {
         <div>
           <Label className="label-field">High-Risk Cytogenetic Abnormalities</Label>
           <p className="text-xs text-muted-foreground -mt-1 mb-2">
-            Select all detected at any time before starting the T-cell engager.
+            Select all detected at any time before starting the T-cell engager. del(17p) alone counts as high risk; otherwise any two of the others are needed.
           </p>
           <div className="grid gap-3 mt-2 sm:grid-cols-2">
             {HIGH_RISK_ABNORMALITIES.map((a) => (
@@ -182,7 +182,7 @@ const Charge = () => {
         <YesNoField
           id="relapse"
           label={`Relapsed Within ${EARLY_RELAPSE_MONTHS} Months of Frontline Therapy`}
-          hint="Functional high-risk disease: progression-free survival of 18 months or less with first-line treatment."
+          hint="Functional high-risk disease: progression-free survival of less than 18 months with first-line treatment."
           value={relapsedEarly}
           onChange={setRelapsedEarly}
         />
