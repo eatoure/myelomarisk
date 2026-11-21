@@ -90,7 +90,7 @@ const ScopeMm = () => {
 
     const ultraHigh =
       points >= SCOPE_MM_ULTRA_HIGH_THRESHOLD
-        ? "\n\nA score of 5 or more fell in the ultra-high-risk subgroup (2.5% of the training cohort): median PFS 2.4 months and median OS 8.4 months, with 12-month PFS 5% and OS 45%."
+        ? "\n\nA score of 5 or more fell in the ultra-high-risk subgroup (2.5% of the training cohort): median PFS 2.4 months (95% CI 1.1–11.6) and median OS 8.4 months (95% CI 5.4–not reached), with 12-month PFS 5% (95% CI 1–36%) and OS 45% (95% CI 27–75%). These estimates come from only 20 patients."
         : "";
 
     setResult(

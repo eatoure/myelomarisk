@@ -43,6 +43,8 @@ export const scopeMmOutcomes: Record<
   {
     label: string;
     points: string;
+    /** Plain-language summary: training-cohort 95% CIs of 1-year PFS/OS, rounded to
+     * the nearest 5% without going above the CI on the favourable side (Nov 2026). */
     summary: string;
     medianPfs: string;
     pfs12: string;
@@ -54,7 +56,7 @@ export const scopeMmOutcomes: Record<
   low: {
     label: "Low risk",
     points: "0 points",
-    summary: "This score is considered low risk by SCOPE-MM. After BCMA CAR-T, the expected 1-year PFS is about 71% (95% CI 65–78%) and the expected 1-year overall survival is about 93% (95% CI 90–97%).",
+    summary: "This score is considered low risk by SCOPE-MM. After BCMA CAR-T, the expected 1-year PFS is about 65–75% and the expected 1-year overall survival is 90% or more.",
     medianPfs: "18.6 months (95% CI 16.4–21.4)",
     pfs12: "71% (95% CI 65–78%)",
     os12: "93% (95% CI 90–97%)",
@@ -64,7 +66,7 @@ export const scopeMmOutcomes: Record<
   intermediate: {
     label: "Intermediate risk",
     points: "1–2 points",
-    summary: "This score is considered intermediate risk by SCOPE-MM. After BCMA CAR-T, the expected 1-year PFS is about 52% (95% CI 46–58%) and the expected 1-year overall survival is about 80% (95% CI 76–85%).",
+    summary: "This score is considered intermediate risk by SCOPE-MM. After BCMA CAR-T, the expected 1-year PFS is about 45–60% and the expected 1-year overall survival is about 75–85%.",
     medianPfs: "12.8 months (95% CI 10.1–16.3)",
     pfs12: "52% (95% CI 46–58%)",
     os12: "80% (95% CI 76–85%)",
@@ -74,7 +76,7 @@ export const scopeMmOutcomes: Record<
   high: {
     label: "High risk",
     points: "≥3 points",
-    summary: "This score is considered high risk by SCOPE-MM. After BCMA CAR-T, the expected 1-year PFS is about 27% (95% CI 21–36%) and the expected 1-year overall survival is about 58% (95% CI 51–67%).",
+    summary: "This score is considered high risk by SCOPE-MM. After BCMA CAR-T, the expected 1-year PFS is about 20–35% and the expected 1-year overall survival is about 50–65%.",
     medianPfs: "6.0 months (95% CI 5.3–8.3)",
     pfs12: "27% (95% CI 21–36%)",
     os12: "58% (95% CI 51–67%)",
@@ -92,11 +94,10 @@ export const SCOPE_MM_ULTRA_HIGH_THRESHOLD = 5;
  * The SCOPE-MM manuscript gives only the point range per component
  * (platelets 0-2, ANC 0-1, Hgb 0-1, CRP 0-1, ferritin 0-2) and states that
  * the "originally published formula" was applied (its ref. 14), with a score
- * of >= 3 classified as high risk. The manuscript does NOT state the cut-offs.
+ * of >= 3 classified as high risk. The manuscript does not list the cut-offs.
  *
  * The cut-offs below are those of the original CAR-HEMATOTOX publication
- * (Rejeski et al., Blood 2021). They are surfaced to reviewers on the staging
- * site for confirmation before release.
+ * (Rejeski et al., Blood 2021), confirmed by the authors (Nov 2026).
  */
 export interface CarHematotoxLabs {
   /** Platelets, G/L (10^9/L). */

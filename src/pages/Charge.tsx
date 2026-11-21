@@ -85,7 +85,7 @@ const Charge = () => {
         `External validation cohort (n=173):\n` +
         `Median PFS: ${o.validationMedianPfs}\n` +
         `12-month PFS: ${o.validationPfs12}\n\n` +
-        `12-month PFS by agent class: BCMA-directed TCE ${o.bcmaPfs12}; talquetamab ${o.talquetamabPfs12}.`
+        `12-month PFS by agent class (derivation cohort): BCMA-directed TCE ${o.bcmaPfs12}; talquetamab ${o.talquetamabPfs12}.`
     );
     setShowResult(true);
   };
@@ -181,8 +181,8 @@ const Charge = () => {
 
         <YesNoField
           id="relapse"
-          label={`Relapsed Within ${EARLY_RELAPSE_MONTHS} Months of Frontline Therapy`}
-          hint="Functional high-risk disease: progression-free survival of less than 18 months with first-line treatment."
+          label={`Frontline PFS Less Than ${EARLY_RELAPSE_MONTHS} Months`}
+          hint={`Functional high-risk disease: progression-free survival of less than ${EARLY_RELAPSE_MONTHS} months with first-line treatment.`}
           value={relapsedEarly}
           onChange={setRelapsedEarly}
         />
@@ -195,7 +195,7 @@ const Charge = () => {
         <YesNoField
           id="bcma"
           label="Prior BCMA-Directed Therapy"
-          hint="E.g. BCMA CAR-T, a BCMA bispecific antibody or belantamab mafodotin."
+          hint="E.g. BCMA CAR-T or a BCMA bispecific antibody."
           value={priorBcma}
           onChange={setPriorBcma}
         />
