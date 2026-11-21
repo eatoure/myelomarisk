@@ -77,6 +77,7 @@ const Charge = () => {
 
     setResult(
       `CHARGE index: **${b.total} of 6**, **${o.label}** (${o.points}).\n\n` +
+        `${o.summary}\n\n` +
         `Factors present: ${present.length ? present.join("; ") : "none"}.\n\n` +
         `Derivation cohort (n=579):\n` +
         `Median PFS: ${o.derivationMedianPfs}\n` +

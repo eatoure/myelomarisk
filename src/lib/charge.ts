@@ -87,6 +87,8 @@ export const chargeOutcomes: Record<
   {
     label: string;
     points: string;
+    /** Plain-language summary of 12-month PFS, wording set by the site team (Nov 2026). */
+    summary: string;
     derivationMedianPfs: string;
     derivationPfs12: string;
     hrVsLow: string;
@@ -99,6 +101,7 @@ export const chargeOutcomes: Record<
   low: {
     label: "Low risk",
     points: "0–1 points",
+    summary: "This score is considered low risk by CHARGE. The expected 12-month PFS on a bispecific T-cell engager is about 55–75% or more.",
     derivationMedianPfs: "21.8 months (95% CI 11.7–not reached)",
     derivationPfs12: "56.6%",
     hrVsLow: "Reference",
@@ -110,6 +113,7 @@ export const chargeOutcomes: Record<
   intermediate: {
     label: "Intermediate risk",
     points: "2–3 points",
+    summary: "This score is considered intermediate risk by CHARGE. The expected 12-month PFS on a bispecific T-cell engager is about 35–40% or more.",
     derivationMedianPfs: "7.1 months (95% CI 6.1–10.1)",
     derivationPfs12: "37.7%",
     hrVsLow: "2.0 (95% CI 1.5–2.7)",
@@ -121,6 +125,7 @@ export const chargeOutcomes: Record<
   high: {
     label: "High risk",
     points: "4–6 points",
+    summary: "This score is considered high risk by CHARGE. The expected 12-month PFS on a bispecific T-cell engager is about 10–20% or more.",
     derivationMedianPfs: "1.6 months (95% CI 1.2–2.5)",
     derivationPfs12: "9.0%",
     hrVsLow: "4.8 (95% CI 3.5–6.7)",

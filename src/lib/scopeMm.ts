@@ -44,7 +44,7 @@ export const scopeMmOutcomes: Record<
     label: string;
     points: string;
     /** Plain-language summary: training-cohort 95% CIs of 1-year PFS/OS, rounded to
-     * the nearest 5% without going above the CI on the favourable side (Nov 2026). */
+     * 5%, with "or more" added at the site team's request (Nov 2026). */
     summary: string;
     medianPfs: string;
     pfs12: string;
@@ -56,7 +56,7 @@ export const scopeMmOutcomes: Record<
   low: {
     label: "Low risk",
     points: "0 points",
-    summary: "This score is considered low risk by SCOPE-MM. After BCMA CAR-T, the expected 1-year PFS is about 65–75% and the expected 1-year overall survival is 90% or more.",
+    summary: "This score is considered low risk by SCOPE-MM. After BCMA CAR-T, the expected 1-year PFS is about 65–75% or more and the expected 1-year overall survival is 90% or more.",
     medianPfs: "18.6 months (95% CI 16.4–21.4)",
     pfs12: "71% (95% CI 65–78%)",
     os12: "93% (95% CI 90–97%)",
@@ -66,7 +66,7 @@ export const scopeMmOutcomes: Record<
   intermediate: {
     label: "Intermediate risk",
     points: "1–2 points",
-    summary: "This score is considered intermediate risk by SCOPE-MM. After BCMA CAR-T, the expected 1-year PFS is about 45–60% and the expected 1-year overall survival is about 75–85%.",
+    summary: "This score is considered intermediate risk by SCOPE-MM. After BCMA CAR-T, the expected 1-year PFS is about 45–60% or more and the expected 1-year overall survival is about 75–85% or more.",
     medianPfs: "12.8 months (95% CI 10.1–16.3)",
     pfs12: "52% (95% CI 46–58%)",
     os12: "80% (95% CI 76–85%)",
@@ -76,7 +76,7 @@ export const scopeMmOutcomes: Record<
   high: {
     label: "High risk",
     points: "≥3 points",
-    summary: "This score is considered high risk by SCOPE-MM. After BCMA CAR-T, the expected 1-year PFS is about 20–35% and the expected 1-year overall survival is about 50–65%.",
+    summary: "This score is considered high risk by SCOPE-MM. After BCMA CAR-T, the expected 1-year PFS is about 20–35% or more and the expected 1-year overall survival is about 50–65% or more.",
     medianPfs: "6.0 months (95% CI 5.3–8.3)",
     pfs12: "27% (95% CI 21–36%)",
     os12: "58% (95% CI 51–67%)",
