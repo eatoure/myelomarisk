@@ -57,16 +57,4 @@ export interface StagedChange {
 export const stagedChanges: StagedChange[] = [
   // Add an entry here for each change on the `deploy` branch awaiting sign-off.
   // Empty it again when the branch is merged to main.
-  {
-    title: "CHARGE index for bispecific T-cell engagers",
-    summary:
-      "New calculator predicting early treatment failure with teclistamab, elranatamab or talquetamab, from Zanwar et al. on behalf of the US Multiple Myeloma Immunotherapy Consortium (Journal of Clinical Oncology). Six factors, one point each: low 0–1, intermediate 2–3, high 4–6, with derivation and validation PFS for each group.",
-    to: "/charge",
-  },
-  {
-    title: "IMWG SCOPE-MM score for BCMA CAR-T",
-    summary:
-      "New calculator for pre-apheresis risk stratification before ide-cel or cilta-cel, from Rejeski, Cordas dos Santos et al. (Lancet Oncology). Five factors, 0–7 points, low / intermediate / high risk, with training-cohort PFS, OS and non-relapse mortality for each group.",
-    to: "/scope-mm",
-  },
 ];
